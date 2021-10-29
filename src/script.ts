@@ -1,10 +1,8 @@
-// zoom slider
-var slider = <HTMLInputElement>document.getElementById("myRange");
-var filePicker = <HTMLInputElement>document.getElementById("filePicker");
+var slider: HTMLInputElement | undefined;
 
 // canvas related variables
 var canvas: HTMLCanvasElement;
-var canvasContext: CanvasRenderingContext2D;
+var canvasContext: CanvasRenderingContext2D | null;
 var canvasWidth: number;
 var canvasHeight: number;
 
@@ -19,14 +17,14 @@ var ratio: number;
 
 // Pointer drag related variables
 var isDown: boolean;
-var pointerX, pointerY;
+var pointerX: number, pointerY: number;
 
 // the accumulated horizontal(X) & vertical(Y) panning the user has done in total
 var netPanningX: number;
 var netPanningY: number;
 
 // zoom and pinch related variables
-let originX, originY;
+let originX: number, originY: number;
 var eventCache: PointerEvent[];
 var prevDiff: number;
 
@@ -36,19 +34,20 @@ function initPointerAndZoom() {
   netPanningY = 0;
   eventCache = [];
   prevDiff = -1;
-  slider.value = '1'
+  if (slider) slider.value = '1'
 }
 
 // draw image
 function draw() {
-  canvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-  canvasContext.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
+  canvasContext?.clearRect(0, 0, canvasWidth, canvasHeight);
+  canvasContext?.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
 }
 
 // recalculate images related variables
 function onImageLoad() {
   imgHeight = img.naturalHeight;
   imgWidth = img.naturalWidth;
+
   // fix image scale to contain
   scale = Math.max(canvasHeight / imgHeight, canvasWidth / imgWidth);
   imgHeight *= scale;
@@ -82,7 +81,7 @@ function calcOrigin(x: number, y: number) {
   originY = (-netPanningY + y) / imgHeight;
 }
 
-function handleMouseMove(x, y) {
+function handleMouseMove(x: number, y: number) {
   // the last mousemove event
   var dx = x - pointerX;
   var dy = y - pointerY;
@@ -94,16 +93,16 @@ function handleMouseMove(x, y) {
   netPanningY = clamp(netPanningY + dy, canvasHeight - imgHeight, 0);
 }
 
-function zoom(deltaX, deltaY) {
+function zoom(deltaX: number, deltaY: number) {
   netPanningX = clamp(netPanningX - deltaX * originX, canvasWidth - imgWidth, 0);
   netPanningY = clamp(netPanningY - deltaY * originY, canvasHeight - imgHeight, 0);
 }
 
-function zoomDelta(deltaX, deltaY) {
+function zoomDelta(deltaX: number, deltaY: number) {
   const newWidth = imgWidth + deltaX;
   if (newWidth < originalWidth || imgHeight + deltaY < originalHeight) return;
   if (newWidth / originalWidth > 5) return;
-  slider.value = String(newWidth / originalWidth)
+  if (slider) slider.value = String(newWidth / originalWidth)
   // calc new size
   imgWidth = newWidth;
   imgHeight += deltaY;
@@ -111,7 +110,7 @@ function zoomDelta(deltaX, deltaY) {
   zoom(deltaX, deltaY);
 }
 
-function zoomScale(scale) {
+function zoomScale(scale: number) {
   prevDiff = -1;
   let deltaX = imgWidth;
   let deltaY = imgHeight;
@@ -145,17 +144,9 @@ function pinch() {
 
 function onSliderMove(e: Event) {
   const value = (e.target as HTMLInputElement).value;
-  zoomScale(value);
+  zoomScale(+value);
   draw();
 };
-
-function loadImageFile(e: Event) {
-  var file = filePicker.files[0];
-  var fr = new FileReader();
-  fr.onload = () => loadImageFromUrl(String(fr.result));
-  fr.readAsDataURL(file);
-}
-
 function onPointerdown(e: PointerEvent) {
   // This event is cached to support 2-finger gestures
   eventCache.push(e);
@@ -188,14 +179,12 @@ function onPointermove(e: PointerEvent) {
   draw();
 };
 
-function prevent(e) {
+function prevent(e: Event) {
   e.preventDefault();
   e.stopPropagation();
 }
 
 function leadListeners() {
-  slider.addEventListener('input', (e) => { prevent(e); onSliderMove(e) });
-  filePicker.addEventListener('change', (e) => { prevent(e); loadImageFile(e) });
   canvas.addEventListener('pointerdown', (e) => { prevent(e); onPointerdown(e) });
   canvas.addEventListener('pointermove', (e) => { prevent(e); onPointermove(e) });
   canvas.addEventListener('pointerout', (e) => { prevent(e); onPointerUp(e) })
@@ -208,14 +197,21 @@ function leadListeners() {
 /*                                   Loading                                  */
 /* -------------------------------------------------------------------------- */
 
-function loadCanvas(id: string) {
-  canvas = document.getElementById(id) as HTMLCanvasElement;
-  canvasContext = canvas.getContext("2d");
-  canvasWidth = canvas.offsetWidth;
-  canvasHeight = canvas.offsetHeight;
+export function loadSlider(el: HTMLInputElement) {
+  slider = el;
+  slider.value = String(imgWidth ? imgWidth / originalWidth : 1);
+  slider.addEventListener('input', (e) => { prevent(e); onSliderMove(e) });
 }
 
-function loadImageFromUrl(url: string) {
+export function loadCanvas(el: HTMLCanvasElement) {
+  canvas = el;
+  canvasContext = canvas.getContext("2d");
+  canvasWidth = canvas.width = canvas.offsetWidth;
+  canvasHeight = canvas.height = canvas.offsetHeight;
+  leadListeners();
+}
+
+export function loadImageFromUrl(url: string) {
   img = new Image();
   img.onload = () => {
     initPointerAndZoom();
@@ -223,7 +219,3 @@ function loadImageFromUrl(url: string) {
   };
   img.src = url;
 }
-
-loadCanvas('canvas');
-leadListeners();
-loadImageFromUrl('https://www.tailwind-kit.com/images/landscape/3.jpg');
