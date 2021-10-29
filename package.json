@@ -1,0 +1,55 @@
+{
+  "name": "cropo",
+  "version": "0.5.2",
+  "scripts": {
+    "watch": "parcel watch",
+    "build": "parcel build"
+  },
+  "author": "mohammad h alijany",
+  "license": "MIT",
+  "dependencies": {
+    "cropo": "file:C:\\Users\\mhali\\Desktop\\cropo\\cropo-0.5.2.tgz"
+  },
+  "devDependencies": {
+    "@parcel/packager-ts": "^2.0.0",
+    "@parcel/transformer-typescript-tsc": "^2.0.0",
+    "@parcel/transformer-typescript-types": "^2.0.0",
+    "autoprefixer": "^10.4.0",
+    "parcel": "^2.0.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.17",
+    "typescript": "^4.4.4"
+  },
+  "source": "src/script.ts",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "description": "Cropo is a fast, lightweight image cropping tools for JavaScript. Resize and crop your uploaded image using a intuitive user interface.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alijany/cropo.git"
+  },
+  "keywords": [
+    "canvas",
+    "image-processing",
+    "profile-image",
+    "crop",
+    "zoom-images",
+    "image-zoom",
+    "cropper",
+    "zoom",
+    "crop-image",
+    "image-cropper",
+    "pinch-to-zoom",
+    "image-crop",
+    "cropping",
+    "cropper"
+  ],
+  "bugs": {
+    "url": "https://github.com/alijany/cropo/issues"
+  },
+  "homepage": "https://github.com/alijany/cropo#readme"
+}

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML, CSS and JavaScript demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <header class="p-4 shadow-md text-gray-800">
+        <div class="max-w-6xl flex justify-between flex-wrap mx-auto">
+            <button class="flex justify-end p-4 md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+            <ul class="items-stretch hidden space-y-3 md:space-y-0 md:space-x-3 md:flex w-full md:w-auto order-2">
+                <li class="flex">
+                    <a href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Link</a>
+                </li>
+                <li class="flex">
+                    <a href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Link</a>
+                </li>
+                <li class="flex">
+                    <a href="#"
+                        class="flex items-center px-4 -mb-1 border-b-2 border-transparent text-blue-600 border-blue-600">Link</a>
+                </li>
+                <li class="flex">
+                    <a href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Link</a>
+                </li>
+            </ul>
+            <a href="#" aria-label="Back to homepage" class="flex items-center p-2 order-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32"
+                    class="w-8 h-8 text-blue-600">
+                    <path
+                        d="M27.912 7.289l-10.324-5.961c-0.455-0.268-1.002-0.425-1.588-0.425s-1.133 0.158-1.604 0.433l0.015-0.008-10.324 5.961c-0.955 0.561-1.586 1.582-1.588 2.75v11.922c0.002 1.168 0.635 2.189 1.574 2.742l0.016 0.008 10.322 5.961c0.455 0.267 1.004 0.425 1.59 0.425 0.584 0 1.131-0.158 1.602-0.433l-0.014 0.008 10.322-5.961c0.955-0.561 1.586-1.582 1.588-2.75v-11.922c-0.002-1.168-0.633-2.189-1.573-2.742zM27.383 21.961c0 0.389-0.211 0.73-0.526 0.914l-0.004 0.002-10.324 5.961c-0.152 0.088-0.334 0.142-0.53 0.142s-0.377-0.053-0.535-0.145l0.005 0.002-10.324-5.961c-0.319-0.186-0.529-0.527-0.529-0.916v-11.922c0-0.389 0.211-0.73 0.526-0.914l0.004-0.002 10.324-5.961c0.152-0.090 0.334-0.143 0.53-0.143s0.377 0.053 0.535 0.144l-0.006-0.002 10.324 5.961c0.319 0.185 0.529 0.527 0.529 0.916z">
+                    </path>
+                    <path
+                        d="M22.094 19.451h-0.758c-0.188 0-0.363 0.049-0.515 0.135l0.006-0.004-4.574 2.512-5.282-3.049v-6.082l5.282-3.051 4.576 2.504c0.146 0.082 0.323 0.131 0.508 0.131h0.758c0.293 0 0.529-0.239 0.529-0.531v-0.716c0-0.2-0.11-0.373-0.271-0.463l-0.004-0.002-5.078-2.777c-0.293-0.164-0.645-0.26-1.015-0.26-0.39 0-0.756 0.106-1.070 0.289l0.010-0.006-5.281 3.049c-0.636 0.375-1.056 1.055-1.059 1.834v6.082c0 0.779 0.422 1.461 1.049 1.828l0.009 0.006 5.281 3.049c0.305 0.178 0.67 0.284 1.061 0.284 0.373 0 0.723-0.098 1.027-0.265l-0.012 0.006 5.080-2.787c0.166-0.091 0.276-0.265 0.276-0.465v-0.716c0-0.293-0.238-0.529-0.529-0.529z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto overflow-hidden relative lg:flex lg:items-center">
+        <div class="w-full py-12 px-4 sm:px-6 lg:px-8 z-20 text-center md:text-left">
+            <h2 class="text-5xl sm:text-6xl font-extrabold text-gray-800 ">
+                <span class="block capitalize">
+                    hearth host
+                </span>
+            </h2>
+            <p class="text-md mt-4 text-gray-400">
+                The state of Utah in the united states is home to lots of beautiful National parks, Bryce national
+                canion park ranks as three of the most magnificient &amp; awe inspiring.
+            </p>
+            <div class="lg:mt-0 lg:flex-shrink-0">
+                <div class="mt-8 inline-flex space-x-3">
+                    <button type="button"
+                        class="py-3 px-6 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                        Get started
+                    </button>
+                    <button type="button"
+                        class="py-3 px-6 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
+                        Get started
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="px-12 py-0 lg:pl-0 lg:py-12 space-y-6 text-center">
+            <canvas class="rounded-xl shadow-md w-96 h-96 mx-auto" style="touch-action: none" id="canvas"></canvas>
+            <input type="range" min="1" max="5" value="1" step="0.01" class="slider w-full max-w-sm block mx-auto" id="myRange">
+            <button
+                class="reliative max-w-sm bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
+                <label class="w-full h-full block py-3 px-6 cursor-pointer">
+                    <span>select image</span>
+                    <input class="hidden" type="file" id="filePicker" />
+                </label>
+            </button>
+        </div>
+    </div>
+
+    <section class="text-gray-800 px-4 sm:px-6 py-12">
+        <div class="container mx-auto p-4 my-6 space-y-2 text-center">
+            <h2 class="text-5xl font-bold">Built to empower every team</h2>
+            <p class="text-gray-600">Libero minima optio qui</p>
+        </div>
+        <div class="container mx-auto grid justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="flex flex-col items-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-8 h-8 text-blue-600">
+                    <path fill-rule="evenodd"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <h3 class="my-3 text-3xl font-semibold">Product</h3>
+                <div class="space-y-1 leading-tight">
+                    <p>Similique quas ea veniam</p>
+                    <p>Tempore quasi porro</p>
+                    <p>Blanditiis aut mollitia ex</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-8 h-8 text-blue-600">
+                    <path fill-rule="evenodd"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <h3 class="my-3 text-3xl font-semibold">Product</h3>
+                <div class="space-y-1 leading-tight">
+                    <p>Similique quas ea veniam</p>
+                    <p>Tempore quasi porro</p>
+                    <p>Blanditiis aut mollitia ex</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-8 h-8 text-blue-600">
+                    <path fill-rule="evenodd"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <h3 class="my-3 text-3xl font-semibold">Product</h3>
+                <div class="space-y-1 leading-tight">
+                    <p>Similique quas ea veniam</p>
+                    <p>Tempore quasi porro</p>
+                    <p>Blanditiis aut mollitia ex</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-8 h-8 text-blue-600">
+                    <path fill-rule="evenodd"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <h3 class="my-3 text-3xl font-semibold">Product</h3>
+                <div class="space-y-1 leading-tight">
+                    <p>Similique quas ea veniam</p>
+                    <p>Tempore quasi porro</p>
+                    <p>Blanditiis aut mollitia ex</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-8 h-8 text-blue-600">
+                    <path fill-rule="evenodd"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <h3 class="my-3 text-3xl font-semibold">Product</h3>
+                <div class="space-y-1 leading-tight">
+                    <p>Similique quas ea veniam</p>
+                    <p>Tempore quasi porro</p>
+                    <p>Blanditiis aut mollitia ex</p>
+                </div>
+            </div>
+            <div class="flex flex-col items-center p-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                    class="w-8 h-8 text-blue-600">
+                    <path fill-rule="evenodd"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <h3 class="my-3 text-3xl font-semibold">Product</h3>
+                <div class="space-y-1 leading-tight">
+                    <p>Similique quas ea veniam</p>
+                    <p>Tempore quasi porro</p>
+                    <p>Blanditiis aut mollitia ex</p>
+                </div>
+            </div>
+            <!---->
+        </div>
+    </section>
+
+    <section class="bg-gray-100 text-gray-800">
+        <div class="max-w-6xl px-4 sm:px-6 py-12 container mx-auto">
+            <span class="block mb-2 text-xs font-medium tracking-widest text-center uppercase text-blue-600">How it
+                works</span>
+            <h2 class="text-5xl font-bold text-center text-gray-800">Building with Mamba is simple</h2>
+            <div class="grid gap-6 my-16 lg:grid-cols-3">
+                <div class="flex flex-col p-8 space-y-4 rounded-md bg-white">
+                    <div
+                        class="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-blue-600 text-gray-50">
+                        1</div>
+                    <p class="text-2xl font-semibold">
+                        <b>Nulla.</b>Nostrum, corrupti blanditiis. Illum, architecto?
+                    </p>
+                </div>
+                <div class="flex flex-col p-8 space-y-4 rounded-md bg-white">
+                    <div
+                        class="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-blue-600 text-gray-50">
+                        2</div>
+                    <p class="text-2xl font-semibold">
+                        <b>Accusantium.</b>Vitae saepe atque neque sunt eius dolor veniam alias debitis?
+                    </p>
+                </div>
+                <div class="flex flex-col p-8 space-y-4 rounded-md bg-white">
+                    <div
+                        class="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-blue-600 text-gray-50">
+                        3</div>
+                    <p class="text-2xl font-semibold">
+                        <b>Maxime.</b>Expedita temporibus culpa reprehenderit doloribus consectetur odio!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-gray-800">
+        <div class="container mx-auto flex flex-col px-4 sm:px-6 py-12">
+            <h2 class="py-4 text-5xl font-bold text-center">Temporibus elit</h2>
+            <div class="container px-5 py-24 mx-auto">
+                <div
+                    class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
+                    <div
+                        class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Shooting Stars</h2>
+                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
+                            vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div
+                    class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
+                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">The Catalyzer</h2>
+                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
+                            vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div
+                        class="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+                            <circle cx="6" cy="6" r="3"></circle>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
+                    <div
+                        class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">The 400 Blows</h2>
+                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
+                            vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-100  text-gray-800">
+        <div class="container max-w-6xl px-4 sm:px-6 py-12 mx-auto">
+            <div class="grid gap-4 mx-4 sm:grid-cols-12">
+                <div class="col-span-12 sm:col-span-3">
+                    <div
+                        class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto before:mx-0 before:bg-blue-600">
+                        <h3 class="text-3xl font-semibold">Morbi tempor</h3>
+                        <span class="text-sm font-bold tracking-wider uppercase text-gray-600">Vestibulum diam
+                            nunc</span>
+                    </div>
+                </div>
+                <div class="relative col-span-12 px-4 space-y-6 sm:col-span-9">
+                    <div
+                        class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 before:absolute before:top-2 before:bottom-0 before:w-0.5 before:-left-3 before:bg-gray-300">
+                        <div
+                            class="flex flex-col relative before:absolute before:top-2 before:w-4 before:h-4 before:rounded-full before:left-[-35px] before:z-[1] before:bg-blue-600">
+                            <h3 class="text-xl font-semibold tracking-wide">Donec porta enim vel </h3>
+                            <time class="text-xs tracking-wide uppercase text-gray-600">Dec 2020</time>
+                            <p class="mt-3">Pellentesque feugiat ante at nisl efficitur, in mollis orci scelerisque.
+                                Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                        </div>
+                        <div
+                            class="flex flex-col relative before:absolute before:top-2 before:w-4 before:h-4 before:rounded-full before:left-[-35px] before:z-[1] before:bg-blue-600">
+                            <h3 class="text-xl font-semibold tracking-wide">Aliquam sit amet nunc ut</h3>
+                            <time class="text-xs tracking-wide uppercase text-gray-600">Jul 2019</time>
+                            <p class="mt-3">Morbi vulputate aliquam libero non dictum. Aliquam sit amet nunc ut diam
+                                aliquet tincidunt nec nec dui. Donec mollis turpis eget egestas sodales.</p>
+                        </div>
+                        <div
+                            class="flex flex-col relative before:absolute before:top-2 before:w-4 before:h-4 before:rounded-full before:left-[-35px] before:z-[1] before:bg-blue-600">
+                            <h3 class="text-xl font-semibold tracking-wide">Pellentesque habitant morbi</h3>
+                            <time class="text-xs tracking-wide uppercase text-gray-600">Jan 2016</time>
+                            <p class="mt-3">Suspendisse tincidunt, arcu nec faucibus efficitur, justo velit consectetur
+                                nisl, sit amet condimentum lacus orci nec purus. Mauris quis quam suscipit, vehicula
+                                felis id, vehicula enim.</p>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="w-full py-8">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <ul class="max-w-screen-md mx-auto text-lg font-light flex flex-wrap justify-between">
+                <li class="my-2">
+                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
+                        FAQ
+                    </a>
+                </li>
+                <li class="my-2">
+                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
+                        Configuration
+                    </a>
+                </li>
+                <li class="my-2">
+                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
+                        Github
+                    </a>
+                </li>
+                <li class="my-2">
+                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
+                        LinkedIn
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+
+    <script type="module" src="src/test.ts"></script>
+</body>
+
+</html>
