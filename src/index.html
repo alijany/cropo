@@ -14,29 +14,31 @@
 
     <header class="p-4 shadow-md text-gray-800">
         <div class="max-w-6xl flex justify-between flex-wrap mx-auto">
-            <button class="flex justify-end p-4 md:hidden">
+            <button class="flex justify-end p-4 md:hidden" id="menu">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                     class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
                     </path>
                 </svg>
             </button>
-            <ul class="items-stretch hidden space-y-3 md:space-y-0 md:space-x-3 md:flex w-full md:w-auto order-2">
+            <ul id="dropdown" class="items-stretch hidden space-y-3 md:space-y-0 md:space-x-3 md:flex flex-row-reverse w-full md:w-auto order-2">
                 <li class="flex">
-                    <a href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Link</a>
+                    <a href="#cropo" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">cropo</a>
                 </li>
                 <li class="flex">
-                    <a href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Link</a>
+                    <a href="#features" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">features</a>
                 </li>
                 <li class="flex">
-                    <a href="#"
-                        class="flex items-center px-4 -mb-1 border-b-2 border-transparent text-blue-600 border-blue-600">Link</a>
+                    <a href="#install" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">install</a>
                 </li>
                 <li class="flex">
-                    <a href="#" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">Link</a>
+                    <a href="#usage" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">usage</a>
+                </li>
+                <li class="flex">
+                    <a href="#changes" class="flex items-center px-4 -mb-1 border-b-2 border-transparent">usage</a>
                 </li>
             </ul>
-            <a href="#" aria-label="Back to homepage" class="flex items-center p-2 order-1">
+            <a href="https://github.com/alijany/cropo" target="_blank" aria-label="Back to homepage" class="flex items-center p-2 order-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-8 h-8 text-blue-600">
@@ -48,7 +50,7 @@
     </header>
 
     <!-- hero -->
-    <div class="max-w-6xl mx-auto overflow-hidden relative lg:flex lg:items-center">
+    <div id="cropo" class="max-w-6xl mx-auto overflow-hidden relative lg:flex lg:items-center">
         <div class="w-full py-12 px-4 sm:px-6 lg:px-8 z-20 text-center md:text-left">
             <h2 class="text-5xl sm:text-7xl font-extrabold text-gray-800 ">
                 <span class="block">
@@ -87,7 +89,7 @@
     </div>
 
     <!-- features -->
-    <section class="text-gray-800 max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16">
+    <section id="features" class="text-gray-800 max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16">
         <div class="container mx-auto mb-6 space-y-2 text-center">
             <h2 class="text-5xl font-bold">Features</h2>
             <p class="text-gray-600">....</p>
@@ -105,9 +107,9 @@
                 </div>
                 <h3 class="my-3 text-3xl font-semibold">Lightweight</h3>
                 <div class="space-y-1 leading-tight text-center">
+                    <p>less than 1KB gzip</p>
                     <p>No dependencies</p>
                     <p>small footprint</p>
-                    <p>5KB gzip</p>
                 </div>
             </div>
             <div class="flex flex-col items-center p-4">
@@ -151,9 +153,9 @@
             </div>
             <div class="flex flex-col items-center p-4">
                 <div class="p-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-image">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                         <circle cx="8.5" cy="8.5" r="1.5"></circle>
                         <polyline points="21 15 16 10 5 21"></polyline>
@@ -169,122 +171,131 @@
         </div>
     </section>
 
-    <section class="bg-gray-100 text-gray-800">
+    <!-- installation -->
+    <section id="install" class="bg-gray-100 text-gray-800">
         <div class="max-w-6xl px-4 sm:px-6 py-12 container mx-auto">
-            <span class="block mb-2 text-xs font-medium tracking-widest text-center uppercase text-blue-600">How it
-                works</span>
-            <h2 class="text-5xl font-bold text-center text-gray-800">Building with Mamba is simple</h2>
-            <div class="grid gap-6 my-16 lg:grid-cols-3">
-                <div class="flex flex-col p-8 space-y-4 rounded-md bg-white">
-                    <div
-                        class="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-blue-600 text-gray-50">
-                        1</div>
-                    <p class="text-2xl font-semibold">
-                        <b>Nulla.</b>Nostrum, corrupti blanditiis. Illum, architecto?
-                    </p>
+            <span
+                class="block mb-2 text-xs font-medium tracking-widest text-center uppercase text-blue-600">installation</span>
+            <h2 class="text-5xl font-bold text-center text-gray-800">Getting Started with Cropo</h2>
+            <div class="container py-16 mx-auto flex flex-wrap">
+                <div class="p-4 lg:w-1/2 w-full">
+                    <div class="flex border-2 rounded-lg border-gray-300 border-opacity-50 p-8 sm:flex-row flex-col">
+                        <div
+                            class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-8 h-8 text-blue-500">
+                                <rect width="24" height="24" opacity="0" />
+                                <path
+                                    d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z" />
+                                <rect width="4" height="10" x="12" y="9" />
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">via NPM:</h2>
+                            <p class="leading-relaxed text-base bg-gray-200 p-3 rounded-lg">npm install --save cropo</p>
+                            <a class="mt-3 text-blue-500 inline-flex items-center">Package page
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-col p-8 space-y-4 rounded-md bg-white">
-                    <div
-                        class="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-blue-600 text-gray-50">
-                        2</div>
-                    <p class="text-2xl font-semibold">
-                        <b>Accusantium.</b>Vitae saepe atque neque sunt eius dolor veniam alias debitis?
-                    </p>
-                </div>
-                <div class="flex flex-col p-8 space-y-4 rounded-md bg-white">
-                    <div
-                        class="flex items-center justify-center flex-shrink-0 w-12 h-12 text-xl font-bold rounded-full bg-blue-600 text-gray-50">
-                        3</div>
-                    <p class="text-2xl font-semibold">
-                        <b>Maxime.</b>Expedita temporibus culpa reprehenderit doloribus consectetur odio!
-                    </p>
+                <div class="p-4 lg:w-1/2 w-full">
+                    <div class="flex border-2 rounded-lg border-gray-300 border-opacity-50 p-8 sm:flex-row flex-col">
+                        <div
+                            class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                class="w-8 h-8 text-blue-500" viewBox="0 0 349.54 374.97">
+                                <path
+                                    d="M411,310c-23.16-2.9-70,34-82,34,0,0,11-53-33-102,43-61,32-120,24-137-10-19-24-7-24-7s-24-75-56,2c-39-2-47,25-72,35-27,31,1,68,1,68-37,30-46,78-44,95-27,19-24,79-3,86-9,21,21,38,53,21,0,0,8,13.11,20,14,87.09,13.93,158.15-41.36,221-66C437,354.59,449.81,314.86,411,310Z"
+                                    transform="translate(-96 -55.75)" fill="none" stroke="currentColor"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="30" />
+                            </svg>
+                        </div>
+                        <div class="flex-grow">
+                            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">via Yarn</h2>
+                            <p class="leading-relaxed text-base bg-gray-200 p-3 rounded-lg">yarn add --save cropo</p>
+                            <a class="mt-3 text-blue-500 inline-flex items-center">Package page
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="text-gray-800">
+    <!-- how to use -->
+    <section id="usage" class="text-gray-800">
         <div class="container mx-auto flex flex-col px-4 sm:px-6 py-12">
-            <h2 class="py-4 text-5xl font-bold text-center">Temporibus elit</h2>
-            <div class="container px-5 py-24 mx-auto">
+            <h2 class="py-4 text-5xl font-bold text-center">Usage Guide</h2>
+            <div class="container py-16 mx-auto">
                 <div
                     class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
                     <div
-                        class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                        </svg>
+                        class="text-5xl sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                        1
                     </div>
                     <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Shooting Stars</h2>
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
-                            vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Include the cropo using ES modules
+                        </h2>
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg ">import cropo from 'cropo';</p>
+                        <h2 class="text-gray-900 text-lg title-font font-medium mt-5 mb-2">Or include the cropo using
+                            CommonJs</h2>
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg ">const cropo = require('cropo');
+                        </p>
                     </div>
                 </div>
                 <div
                     class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
                     <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">The Catalyzer</h2>
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
-                            vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">initialize Cropo with the
+                            following code</h2>
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg">
+                            // load html canvas element <br />
+                            loadCanvas(document.getElementById('canvas'));<br />
+                            // load image<br />
+                            loadImageFromUrl('https://www.tailwind-kit.com/images/landscape/3.jpg');
+                        </p>
                     </div>
                     <div
-                        class="sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                            <circle cx="6" cy="6" r="3"></circle>
-                            <circle cx="6" cy="18" r="3"></circle>
-                            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                        </svg>
+                        class="text-5xl sm:w-32 sm:order-none order-first sm:h-32 h-20 w-20 sm:ml-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                        2
                     </div>
                 </div>
                 <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col">
                     <div
-                        class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
+                        class="text-5xl sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
+                        3
                     </div>
                     <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">The 400 Blows</h2>
-                        <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast
-                            vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        <a class="mt-3 text-blue-500 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Optionals</h2>
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg">
+                            // select an input to control zoom level <br />
+                            loadSlider(document.getElementById("myRange"))</p>
+                        <p class="leading-relaxed text-base mt-3">
+                            input range most be between 1 and 5
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-gray-100  text-gray-800">
+    <!-- change log -->
+    <section id="changes" class="bg-gray-100  text-gray-800">
         <div class="container max-w-6xl px-4 sm:px-6 py-12 mx-auto">
             <div class="grid gap-4 mx-4 sm:grid-cols-12">
                 <div class="col-span-12 sm:col-span-3">
                     <div
                         class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-0 before:bg-blue-600">
-                        <h3 class="text-3xl font-semibold">Morbi tempor</h3>
-                        <span class="text-sm font-bold tracking-wider uppercase text-gray-600">Vestibulum diam
-                            nunc</span>
+                        <h3 class="text-3xl font-semibold">Change Log</h3>
+                        <span class="text-sm font-bold tracking-wider uppercase text-gray-600">version >= 0.5.0</span>
                     </div>
                 </div>
                 <div class="relative col-span-12 px-4 space-y-6 sm:col-span-9">
@@ -292,27 +303,12 @@
                         class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 before:absolute before:top-2 before:bottom-0 before:w-0.5 before:-left-3 before:bg-gray-300">
                         <div
                             class="flex flex-col relative before:absolute before:top-2 before:w-4 before:h-4 before:rounded-full before:left-[-35px] before:z-[1] before:bg-blue-600">
-                            <h3 class="text-xl font-semibold tracking-wide">Donec porta enim vel </h3>
-                            <time class="text-xs tracking-wide uppercase text-gray-600">Dec 2020</time>
-                            <p class="mt-3">Pellentesque feugiat ante at nisl efficitur, in mollis orci scelerisque.
-                                Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                            <h3 class="text-xl font-semibold tracking-wide">V0.5.3 </h3>
+                            <time class="text-xs tracking-wide uppercase text-gray-600">Oct 2021</time>
+                            <p class="mt-3">replace mouse and touch eventListeners whit pointer eventListeners - add
+                                zoom function - add basic documentation - add commonJs and EsModule support - replace
+                                parcel whit microbundle </p>
                         </div>
-                        <div
-                            class="flex flex-col relative before:absolute before:top-2 before:w-4 before:h-4 before:rounded-full before:left-[-35px] before:z-[1] before:bg-blue-600">
-                            <h3 class="text-xl font-semibold tracking-wide">Aliquam sit amet nunc ut</h3>
-                            <time class="text-xs tracking-wide uppercase text-gray-600">Jul 2019</time>
-                            <p class="mt-3">Morbi vulputate aliquam libero non dictum. Aliquam sit amet nunc ut diam
-                                aliquet tincidunt nec nec dui. Donec mollis turpis eget egestas sodales.</p>
-                        </div>
-                        <div
-                            class="flex flex-col relative before:absolute before:top-2 before:w-4 before:h-4 before:rounded-full before:left-[-35px] before:z-[1] before:bg-blue-600">
-                            <h3 class="text-xl font-semibold tracking-wide">Pellentesque habitant morbi</h3>
-                            <time class="text-xs tracking-wide uppercase text-gray-600">Jan 2016</time>
-                            <p class="mt-3">Suspendisse tincidunt, arcu nec faucibus efficitur, justo velit consectetur
-                                nisl, sit amet condimentum lacus orci nec purus. Mauris quis quam suscipit, vehicula
-                                felis id, vehicula enim.</p>
-                        </div>
-                        <!---->
                     </div>
                 </div>
             </div>
@@ -321,25 +317,15 @@
 
     <footer class="w-full py-8">
         <div class="max-w-screen-xl mx-auto px-4">
-            <ul class="max-w-screen-md mx-auto text-lg font-light flex flex-wrap justify-between">
-                <li class="my-2">
-                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
-                        FAQ
-                    </a>
-                </li>
-                <li class="my-2">
-                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
-                        Configuration
-                    </a>
-                </li>
-                <li class="my-2">
-                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
+            <ul class="max-w-screen-md mx-auto text-lg font-light flex flex-wrap justify-between text-center">
+                <li class="my-2 mx-auto">
+                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="https://github.com/alijany/cropo" target="_blank">
                         Github
                     </a>
                 </li>
-                <li class="my-2">
-                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="#">
-                        LinkedIn
+                <li class="my-2 mx-auto">
+                    <a class="text-gray-400 hover:text-gray-800 transition-colors duration-200" href="mailto:mh.alijany@gmail.com" target="_blank">
+                        Authored by mohammad h alijany
                     </a>
                 </li>
             </ul>

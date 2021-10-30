@@ -5,9 +5,9 @@ function prevent(e: Event) {
     e.stopPropagation();
 }
 
-loadCanvas(document.getElementById('canvas') as HTMLCanvasElement)
+loadCanvas(document.getElementById('canvas') as HTMLCanvasElement);
 loadImageFromUrl('https://www.tailwind-kit.com/images/landscape/3.jpg');
-loadSlider(document.getElementById("myRange") as HTMLInputElement)
+loadSlider(document.getElementById("myRange") as HTMLInputElement);
 var filePicker: HTMLInputElement = <HTMLInputElement>document.getElementById("filePicker");
 function loadImageFile() {
     var file = (filePicker as HTMLInputElement).files?.[0];
@@ -17,3 +17,14 @@ function loadImageFile() {
     fr.readAsDataURL(file);
 }
 filePicker.addEventListener('change', (e) => { prevent(e); loadImageFile() });
+
+/* -------------------------------------------------------------------------- */
+/*                                    page                                    */
+/* -------------------------------------------------------------------------- */
+
+const dropdown = document.getElementById("dropdown");
+
+
+document.getElementById("menu").addEventListener('click', () => { 
+    dropdown.classList.toggle('hidden');
+})
