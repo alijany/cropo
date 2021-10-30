@@ -12,7 +12,7 @@
 		{
 			"label": "npm build page",
 			"type": "shell",
-			"command": "rm ./docs/* -Recurse -Force ; cd ./src ; npx parcel build ./index.html --dist-dir ../docs",
+			"command": "rm ./docs/* -Recurse -Force ; cd ./src ; npx parcel build ./index.html --dist-dir ../docs  --public-url cropo",
 			"problemMatcher": [
 				"$tsc"
 			]
