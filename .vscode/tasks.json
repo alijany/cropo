@@ -4,7 +4,7 @@
 		{
 			"label": "npm watch page",
 			"type": "shell",
-			"command": "cd ./src ; npx parcel ./index.html --dist-dir ../public",
+			"command": "cd ./src ; npx parcel ./index.html --dist-dir ../docs",
 			"problemMatcher": [
 				"$tsc"
 			]
@@ -12,7 +12,7 @@
 		{
 			"label": "npm build page",
 			"type": "shell",
-			"command": "rm ./public/* -Recurse -Force ; cd ./src ; npx parcel build ./index.html --dist-dir ../public",
+			"command": "rm ./docs/* -Recurse -Force ; cd ./src ; npx parcel build ./index.html --dist-dir ../docs",
 			"problemMatcher": [
 				"$tsc"
 			]
