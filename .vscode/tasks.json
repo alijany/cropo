@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "npm watch page",
+			"type": "shell",
+			"command": "cd ./src ; npx parcel ./index.html --dist-dir ../public",
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "npm build page",
+			"type": "shell",
+			"command": "rm ./public/* -Recurse -Force ; cd ./src ; npx parcel build ./index.html --dist-dir ../public",
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "npm build",
+			"type": "shell",
+			"command": "rm ./dist/* -Recurse -Force ; npx microbundle ; npm pack",
+			"problemMatcher": [
+				"$tsc"
+			]
+		}
+	]
+}

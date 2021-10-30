@@ -1,6 +1,5 @@
 import { loadCanvas, loadImageFromUrl, loadSlider } from 'cropo';
 
-
 function prevent(e: Event) {
     e.preventDefault();
     e.stopPropagation();

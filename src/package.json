@@ -1,0 +1,20 @@
+{
+  "name": "cropo-page",
+  "version": "1.0.0",
+  "description": "cropo github page ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mohammad h alijany",
+  "license": "ISC",
+  "dependencies": {
+    "cropo": "file:C:\\Users\\mhali\\Desktop\\cropo\\cropo-0.5.2.tgz"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "css.gg": "^2.0.0",
+    "parcel": "^2.0.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19"
+  }
+}

@@ -197,6 +197,13 @@ function leadListeners() {
 /*                                   Loading                                  */
 /* -------------------------------------------------------------------------- */
 
+function onImageLoadFinish() {
+  canvasWidth = canvas.width = canvas.offsetWidth;
+  canvasHeight = canvas.height = canvas.offsetHeight;
+  initPointerAndZoom();
+  onImageLoad();
+}
+
 export function loadSlider(el: HTMLInputElement) {
   slider = el;
   slider.value = String(imgWidth ? imgWidth / originalWidth : 1);
@@ -206,16 +213,18 @@ export function loadSlider(el: HTMLInputElement) {
 export function loadCanvas(el: HTMLCanvasElement) {
   canvas = el;
   canvasContext = canvas.getContext("2d");
-  canvasWidth = canvas.width = canvas.offsetWidth;
-  canvasHeight = canvas.height = canvas.offsetHeight;
   leadListeners();
 }
 
 export function loadImageFromUrl(url: string) {
   img = new Image();
   img.onload = () => {
-    initPointerAndZoom();
-    onImageLoad();
+    if (document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", function (event) {
+        onImageLoadFinish();
+      });
+    else
+      onImageLoadFinish();
   };
   img.src = url;
 }
