@@ -202,9 +202,11 @@ const onResize = debounce<[]>(() => {
   } else {
     netPanningX += deltaX / 2;
     netPanningY += deltaY / 2;
+    originalWidth = canvasWidth;
+    originalHeight = canvasWidth * ratio;
     draw();
   }
-  slider.value = String(scale = Math.min(imgWidth / canvasWidth, imgHeight / canvasHeight));
+  slider.value = String(scale = Math.min(imgWidth / canvasWidth, imgWidth / canvasHeight) || 1);
 }, 300)
 
 function prevent(e: Event) {
@@ -228,7 +230,7 @@ function leadListeners() {
 
 export function loadSlider(el: HTMLInputElement) {
   slider = el;
-  slider.value = String(img ? scale : 1);
+  slider.value = String(img ? scale || 1 : 1);
   slider.addEventListener('input', (e) => { prevent(e); onSliderMove(e) });
 }
 
