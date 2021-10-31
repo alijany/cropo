@@ -1,4 +1,5 @@
-import { loadCanvas, loadImageFromUrl, loadSlider } from 'cropo';
+import image from './pine.webp';
+import { download, loadCanvas, loadImageFromUrl, loadSlider } from '../script';
 
 function prevent(e: Event) {
     e.preventDefault();
@@ -6,7 +7,7 @@ function prevent(e: Event) {
 }
 
 loadCanvas(document.getElementById('canvas') as HTMLCanvasElement);
-loadImageFromUrl('https://www.tailwind-kit.com/images/landscape/3.jpg');
+loadImageFromUrl(image);
 loadSlider(document.getElementById("myRange") as HTMLInputElement);
 var filePicker: HTMLInputElement = <HTMLInputElement>document.getElementById("filePicker");
 function loadImageFile() {
@@ -24,7 +25,10 @@ filePicker.addEventListener('change', (e) => { prevent(e); loadImageFile() });
 
 const dropdown = document.getElementById("dropdown");
 
-
-document.getElementById("menu").addEventListener('click', () => { 
+document.getElementById("menu").addEventListener('click', () => {
     dropdown.classList.toggle('hidden');
-})
+});
+
+document.getElementById("download").addEventListener('click', () => {
+    download()
+});

@@ -51,14 +51,14 @@
     </header>
 
     <!-- hero -->
-    <div id="cropo" class="max-w-6xl mx-auto overflow-hidden relative lg:flex lg:items-center">
+    <div id="cropo" class="max-w-6xl mx-auto relative lg:flex lg:items-center">
         <div class="w-full py-12 px-4 sm:px-6 lg:px-8 z-20 text-center md:text-left">
             <h2 class="text-5xl sm:text-7xl font-extrabold text-gray-800 ">
                 <span class="block">
                     CROPO
                 </span>
             </h2>
-            <h1 class="text-md mt-8 text-gray-400">
+            <h1 class="text-md mt-8 text-gray-400 lg:pr-12">
                 Cropo is a fast, lightweight image cropping tools for JavaScript. Resize and crop your uploaded image
                 using a intuitive user interface.
             </h1>
@@ -75,22 +75,29 @@
                 </div>
             </div>
         </div>
-        <div class="px-12 py-0 lg:pl-0 lg:py-12 space-y-6 text-center">
-            <canvas class="rounded-xl shadow-md w-96 h-96 mx-auto" style="touch-action: none" id="canvas"></canvas>
+        <div class="py-0 lg:pl-0 px-4 sm:px-6 lg:py-12 space-y-6 text-center">
+            <canvas class="rounded-xl shadow-md w-full h-72 md:w-96 md:h-96 mx-auto" style="touch-action: none"
+                id="canvas"></canvas>
             <input type="range" min="1" max="5" value="1" step="0.01" class="slider w-full max-w-sm block mx-auto"
                 id="myRange">
-            <button
-                class="reliative max-w-sm bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
-                <label class="w-full h-full block py-3 px-6 cursor-pointer">
-                    <span>select image</span>
-                    <input class="hidden" type="file" id="filePicker" />
-                </label>
-            </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-sm mx-auto">
+                <button
+                    class="reliative bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
+                    <label class="w-full h-full block py-3 px-6 cursor-pointer">
+                        <span>select image</span>
+                        <input class="hidden" type="file" id="filePicker" />
+                    </label>
+                </button>
+                <button id="download"
+                    class="py-3 px-6 bg-blue-500 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg">
+                    download
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- features -->
-    <section id="features" class="text-gray-800 max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16">
+    <section id="features" class="text-gray-800 max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div class="container mx-auto mb-6 space-y-2 text-center">
             <h2 class="text-5xl font-bold">Features</h2>
             <p class="text-gray-600">....</p>
@@ -233,7 +240,7 @@
 
     <!-- how to use -->
     <section id="usage" class="text-gray-800">
-        <div class="container mx-auto flex flex-col px-4 sm:px-6 py-12">
+        <div class="container mx-auto flex flex-col px-4 sm:px-6 py-12" style="word-break: break-word; ">
             <h2 class="py-4 text-5xl font-bold text-center">Usage Guide</h2>
             <div class="container py-16 mx-auto">
                 <div
@@ -242,26 +249,28 @@
                         class="text-5xl sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 flex-shrink-0">
                         1
                     </div>
-                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+                    <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0 ">
                         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Include the cropo using ES modules
                         </h2>
-                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg ">import cropo from 'cropo';</p>
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg text-left">import cr from
+                            'cropo';</p>
                         <h2 class="text-gray-900 text-lg title-font font-medium mt-5 mb-2">Or include the cropo using
                             CommonJs</h2>
-                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg ">const cropo = require('cropo');
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg text-left">const cr =
+                            require('cropo');
                         </p>
                     </div>
                 </div>
                 <div
                     class="flex items-center lg:w-3/5 mx-auto border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
                     <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2">initialize Cropo with the
+                        <h2 class="text-gray-900 text-lg title-font font-medium mb-2 ">initialize Cropo with the
                             following code</h2>
-                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg">
-                            // load html canvas element <br />
-                            loadCanvas(document.getElementById('canvas'));<br />
-                            // load image<br />
-                            loadImageFromUrl('https://www.tailwind-kit.com/images/landscape/3.jpg');
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg text-left">
+                            <span class="text-green-700 font-bold">// load html canvas element </span><br />
+                            cr.loadCanvas(document.getElementById('canvas'));<br />
+                            <span class="text-green-700 font-bold">// load image</span><br />
+                            cr.loadImageFromUrl('http://address/landscape/3.jpg');
                         </p>
                     </div>
                     <div
@@ -276,11 +285,19 @@
                     </div>
                     <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
                         <h2 class="text-gray-900 text-lg title-font font-medium mb-2">Optionals</h2>
-                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg">
-                            // select an input to control zoom level <br />
-                            loadSlider(document.getElementById("myRange"))</p>
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg text-left">
+                            <span class="text-green-700 font-bold">// select an input to control zoom level</span><br />
+                            cr.loadSlider(document.getElementById("myRange"))
+                        </p>
                         <p class="leading-relaxed text-base mt-3">
                             input range most be between 1 and 5
+                        </p>
+                        <h2 class="text-gray-900 text-lg title-font font-medium mt-4 mb-2">Download or upload image</h2>
+                        <p class="leading-relaxed text-base bg-gray-100 p-3 rounded-lg text-left">
+                            <span class="text-green-700 font-bold">// download canvas image</span> <br />
+                            cr.download();<br />
+                            <span class="text-green-700 font-bold">// get image as data url</span> <br />
+                            cr.getDataUrl();<br />
                         </p>
                     </div>
                 </div>
