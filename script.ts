@@ -252,3 +252,46 @@ export function loadImageFromUrl(url: string) {
   };
   img.src = url;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                   Export                                   */
+/* -------------------------------------------------------------------------- */
+
+
+export function getBlob() {
+  return new Promise<Blob>((res, reg) => {
+    var canvas = document.createElement('canvas');
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    var context = canvas.getContext('2d');
+    context.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
+    canvas.toBlob((b) => {
+      res(b);
+    })
+  })
+}
+
+export function getDataUrl() {
+  var canvas = document.createElement('canvas');
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+  var context = canvas.getContext('2d');
+  context.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
+  return canvas.toDataURL();
+}
+
+export function download() {
+  const link = document.createElement('a');
+  link.download = 'canvas.png';
+  link.href = getDataUrl();
+  link.click();
+}
+
+export function getCropInfo() {
+  return ({
+    width: imgWidth,
+    imgHeight: imgHeight,
+    x: netPanningX,
+    y: netPanningY
+  })
+}
