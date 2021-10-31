@@ -3,8 +3,8 @@ var slider: HTMLInputElement | undefined;
 // canvas related variables
 var canvas: HTMLCanvasElement;
 var canvasContext: CanvasRenderingContext2D | null;
-var canvasWidth: number;
-var canvasHeight: number;
+var canvasWidth: number = 0;
+var canvasHeight: number = 0;
 
 // image related variables
 var img: HTMLImageElement;
@@ -44,11 +44,7 @@ function draw() {
 }
 
 // recalculate images related variables
-function onImageLoad() {
-  imgHeight = img.naturalHeight;
-  imgWidth = img.naturalWidth;
-
-  // fix image scale to contain
+function onImageLoad(fixScale: boolean = true) {
   scale = Math.max(canvasHeight / imgHeight, canvasWidth / imgWidth);
   imgHeight *= scale;
   imgWidth *= scale;
@@ -61,6 +57,17 @@ function onImageLoad() {
 // define function to clamp number
 function clamp(num: number, from: number, to: number) {
   return Math.max(from, Math.min(num, to));
+}
+
+// define debounce function
+function debounce<Params extends any[]>(func: (...args: Params) => any, timeout: number,): (...args: Params) => void {
+  let timer: NodeJS.Timeout
+  return (...args: Params) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      func(...args)
+    }, timeout)
+  }
 }
 
 // get the median point of pointers
@@ -102,7 +109,7 @@ function zoomDelta(deltaX: number, deltaY: number) {
   const newWidth = imgWidth + deltaX;
   if (newWidth < originalWidth || imgHeight + deltaY < originalHeight) return;
   if (newWidth / originalWidth > 5) return;
-  if (slider) slider.value = String(newWidth / originalWidth)
+  if (slider) slider.value = String(scale = newWidth / originalWidth)
   // calc new size
   imgWidth = newWidth;
   imgHeight += deltaY;
@@ -144,9 +151,11 @@ function pinch() {
 
 function onSliderMove(e: Event) {
   const value = (e.target as HTMLInputElement).value;
-  zoomScale(+value);
+  scale = +value;
+  zoomScale(scale);
   draw();
 };
+
 function onPointerdown(e: PointerEvent) {
   // This event is cached to support 2-finger gestures
   eventCache.push(e);
@@ -179,6 +188,25 @@ function onPointermove(e: PointerEvent) {
   draw();
 };
 
+const onResize = debounce<[]>(() => {
+  const deltaX = canvas.offsetWidth - canvasWidth;
+  const deltaY = canvas.offsetHeight - canvasHeight;
+  canvasWidth = canvas.width = canvas.offsetWidth;
+  canvasHeight = canvas.height = canvas.offsetHeight;
+  if (imgWidth < canvasWidth) {
+    netPanningX = 0;
+    onImageLoad();
+  } else if (imgHeight < canvasHeight) {
+    netPanningY = 0;
+    onImageLoad();
+  } else {
+    netPanningX += deltaX / 2;
+    netPanningY += deltaY / 2;
+    draw();
+  }
+  slider.value = String(scale = Math.min(imgWidth / canvasWidth, imgHeight / canvasHeight));
+}, 300)
+
 function prevent(e: Event) {
   e.preventDefault();
   e.stopPropagation();
@@ -191,40 +219,34 @@ function leadListeners() {
   canvas.addEventListener('pointerup', (e) => { prevent(e); onPointerUp(e) })
   canvas.addEventListener('pointercancel', (e) => { prevent(e); onPointerUp(e) })
   canvas.addEventListener('pointerleave', (e) => { prevent(e); onPointerUp(e) })
+  new ResizeObserver(onResize).observe(canvas);
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                   Loading                                  */
 /* -------------------------------------------------------------------------- */
 
-function onImageLoadFinish() {
-  canvasWidth = canvas.width = canvas.offsetWidth;
-  canvasHeight = canvas.height = canvas.offsetHeight;
-  initPointerAndZoom();
-  onImageLoad();
-}
-
 export function loadSlider(el: HTMLInputElement) {
   slider = el;
-  slider.value = String(imgWidth ? imgWidth / originalWidth : 1);
+  slider.value = String(img ? scale : 1);
   slider.addEventListener('input', (e) => { prevent(e); onSliderMove(e) });
 }
 
 export function loadCanvas(el: HTMLCanvasElement) {
   canvas = el;
   canvasContext = canvas.getContext("2d");
+  canvasWidth = canvas.width = canvas.offsetWidth;
+  canvasHeight = canvas.height = canvas.offsetHeight;
   leadListeners();
 }
 
 export function loadImageFromUrl(url: string) {
   img = new Image();
   img.onload = () => {
-    if (document.readyState === "loading")
-      document.addEventListener("DOMContentLoaded", function (event) {
-        onImageLoadFinish();
-      });
-    else
-      onImageLoadFinish();
+    initPointerAndZoom();
+    imgHeight = img.naturalHeight;
+    imgWidth = img.naturalWidth;
+    onImageLoad();
   };
   img.src = url;
 }
