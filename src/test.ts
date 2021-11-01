@@ -7,7 +7,7 @@ function prevent(e: Event) {
 }
 
 loadCanvas(document.getElementById('canvas') as HTMLCanvasElement);
-loadImageFromUrl(image);
+loadImageFromUrl(image, true);
 loadSlider(document.getElementById("myRange") as HTMLInputElement);
 var filePicker: HTMLInputElement = <HTMLInputElement>document.getElementById("filePicker");
 function loadImageFile() {
@@ -30,5 +30,5 @@ document.getElementById("menu").addEventListener('click', () => {
 });
 
 document.getElementById("download").addEventListener('click', () => {
-    download()
+    download(2)
 });

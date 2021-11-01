@@ -1,16 +1,20 @@
 var slider: HTMLInputElement | undefined;
 
 // canvas related variables
-var canvas: HTMLCanvasElement;
-var canvasContext: CanvasRenderingContext2D | null;
+var canvas: HTMLCanvasElement | undefined;
+var canvasContext: CanvasRenderingContext2D | undefined;
 var canvasWidth: number = 0;
 var canvasHeight: number = 0;
 
 // image related variables
+var fit: boolean = true;
 var img: HTMLImageElement;
 var imgHeight: number;
 var imgWidth: number;
 var scale: number;
+var baseScale: number = 1;
+var maxScale: number = 5;
+var minScale: number = 1;
 var originalWidth: number;
 var originalHeight: number;
 var ratio: number;
@@ -23,36 +27,11 @@ var pointerX: number, pointerY: number;
 var netPanningX: number;
 var netPanningY: number;
 
+
 // zoom and pinch related variables
 let originX: number, originY: number;
 var eventCache: PointerEvent[];
 var prevDiff: number;
-
-function initPointerAndZoom() {
-  isDown = false;
-  netPanningX = 0;
-  netPanningY = 0;
-  eventCache = [];
-  prevDiff = -1;
-  if (slider) slider.value = '1'
-}
-
-// draw image
-function draw() {
-  canvasContext?.clearRect(0, 0, canvasWidth, canvasHeight);
-  canvasContext?.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
-}
-
-// recalculate images related variables
-function onImageLoad(fixScale: boolean = true) {
-  scale = Math.max(canvasHeight / imgHeight, canvasWidth / imgWidth);
-  imgHeight *= scale;
-  imgWidth *= scale;
-  originalWidth = imgWidth;
-  originalHeight = imgHeight;
-  ratio = originalHeight / originalWidth;
-  draw();
-}
 
 // define function to clamp number
 function clamp(num: number, from: number, to: number) {
@@ -68,6 +47,45 @@ function debounce<Params extends any[]>(func: (...args: Params) => any, timeout:
       func(...args)
     }, timeout)
   }
+}
+
+//
+function initPointerAndZoom() {
+  isDown = false;
+  netPanningX = 0;
+  netPanningY = 0;
+  eventCache = [];
+  prevDiff = -1;
+  if (slider) slider.value = String(baseScale)
+}
+
+// draw image
+function draw() {
+  canvasContext?.clearRect(0, 0, canvasWidth, canvasHeight);
+  canvasContext?.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
+}
+
+// fix range 
+function fixScale() {
+  if (fit)
+    scale = Math.min(imgWidth / canvasWidth, imgWidth / canvasHeight) || baseScale;
+  else
+    scale = Math.min(imgWidth / originalWidth, imgWidth / originalHeight) || baseScale;
+  if (slider) slider.value = String(scale);
+}
+
+// recalculate images related variables
+function onImageLoad() {
+  if (fit) {
+    scale = Math.max(canvasHeight / imgHeight, canvasWidth / imgWidth);
+    imgHeight *= scale;
+    imgWidth *= scale;
+  }
+  pointerX = pointerY = 0;
+  originalWidth = imgWidth;
+  originalHeight = imgHeight;
+  ratio = originalHeight / originalWidth;
+  draw();
 }
 
 // get the median point of pointers
@@ -88,7 +106,7 @@ function calcOrigin(x: number, y: number) {
   originY = (-netPanningY + y) / imgHeight;
 }
 
-function handleMouseMove(x: number, y: number) {
+export function move(x: number, y: number) {
   // the last mousemove event
   var dx = x - pointerX;
   var dy = y - pointerY;
@@ -96,28 +114,29 @@ function handleMouseMove(x: number, y: number) {
   pointerX = x;
   pointerY = y;
   // accumulate the net panning done
-  netPanningX = clamp(netPanningX + dx, canvasWidth - imgWidth, 0);
-  netPanningY = clamp(netPanningY + dy, canvasHeight - imgHeight, 0);
+  netPanningX = fit ? clamp(netPanningX + dx, canvasWidth - imgWidth, 0) : netPanningX + dx;
+  netPanningY = fit ? clamp(netPanningY + dy, canvasHeight - imgHeight, 0) : netPanningY + dy;
 }
 
-function zoom(deltaX: number, deltaY: number) {
-  netPanningX = clamp(netPanningX - deltaX * originX, canvasWidth - imgWidth, 0);
-  netPanningY = clamp(netPanningY - deltaY * originY, canvasHeight - imgHeight, 0);
+function drawZoom(deltaX: number, deltaY: number) {
+  netPanningX = fit ? clamp(netPanningX - deltaX * originX, canvasWidth - imgWidth, 0) : netPanningX - deltaX * originX;
+  netPanningY = fit ? clamp(netPanningY - deltaY * originY, canvasHeight - imgHeight, 0) : netPanningY - deltaY * originY;
 }
 
 function zoomDelta(deltaX: number, deltaY: number) {
   const newWidth = imgWidth + deltaX;
   if (newWidth < originalWidth || imgHeight + deltaY < originalHeight) return;
-  if (newWidth / originalWidth > 5) return;
+  if (newWidth / originalWidth > maxScale || newWidth / originalWidth < minScale) return;
   if (slider) slider.value = String(scale = newWidth / originalWidth)
   // calc new size
   imgWidth = newWidth;
   imgHeight += deltaY;
   // accumulate the net panning done
-  zoom(deltaX, deltaY);
+  drawZoom(deltaX, deltaY);
 }
 
 function zoomScale(scale: number) {
+  if (scale > maxScale || scale < minScale) return;
   prevDiff = -1;
   let deltaX = imgWidth;
   let deltaY = imgHeight;
@@ -129,7 +148,7 @@ function zoomScale(scale: number) {
   deltaY -= imgHeight;
   //
   calcOrigin(canvasWidth / 2, canvasHeight / 2);
-  zoom(-deltaX, -deltaY)
+  drawZoom(-deltaX, -deltaY)
 }
 
 function pinch() {
@@ -175,6 +194,7 @@ function onPointerUp(e: PointerEvent) {
 };
 
 function onPointermove(e: PointerEvent) {
+  if (!isDown) return;
   // Find this event in the cache and update its record with this event
   for (var i = 0; i < eventCache.length; i++)
     if (e.pointerId == eventCache[i].pointerId) {
@@ -182,7 +202,7 @@ function onPointermove(e: PointerEvent) {
     }
   // calc x,y and
   let [x, y] = getPointerAverage();
-  if (isDown) handleMouseMove(x, y);
+  move(x, y);
   pinch();
   calcOrigin(canvasWidth / 2, canvasHeight / 2);
   draw();
@@ -193,10 +213,10 @@ const onResize = debounce<[]>(() => {
   const deltaY = canvas.offsetHeight - canvasHeight;
   canvasWidth = canvas.width = canvas.offsetWidth;
   canvasHeight = canvas.height = canvas.offsetHeight;
-  if (imgWidth < canvasWidth) {
+  if (fit && imgWidth < canvasWidth) {
     netPanningX = 0;
     onImageLoad();
-  } else if (imgHeight < canvasHeight) {
+  } else if (fit && imgHeight < canvasHeight) {
     netPanningY = 0;
     onImageLoad();
   } else {
@@ -206,7 +226,7 @@ const onResize = debounce<[]>(() => {
     originalHeight = canvasWidth * ratio;
     draw();
   }
-  slider.value = String(scale = Math.min(imgWidth / canvasWidth, imgWidth / canvasHeight) || 1);
+  fixScale();
 }, 300)
 
 function prevent(e: Event) {
@@ -230,25 +250,28 @@ function leadListeners() {
 
 export function loadSlider(el: HTMLInputElement) {
   slider = el;
-  slider.value = String(img ? scale || 1 : 1);
+  slider.value = String(scale || baseScale);
   slider.addEventListener('input', (e) => { prevent(e); onSliderMove(e) });
 }
 
-export function loadCanvas(el: HTMLCanvasElement) {
+export function loadCanvas(el: HTMLCanvasElement, width?: number, height?: number) {
   canvas = el;
   canvasContext = canvas.getContext("2d");
-  canvasWidth = canvas.width = canvas.offsetWidth;
-  canvasHeight = canvas.height = canvas.offsetHeight;
+  canvasWidth = canvas.width = width || canvas.offsetWidth;
+  canvasHeight = canvas.height = height || canvas.offsetHeight;
   leadListeners();
 }
 
-export function loadImageFromUrl(url: string) {
+export function loadImageFromUrl(url: string, fitImage: boolean = true, onload?: () => void) {
+  if (!canvas) throw Error('first call loadCanvas');
+  fit = fitImage;
   img = new Image();
   img.onload = () => {
     initPointerAndZoom();
     imgHeight = img.naturalHeight;
     imgWidth = img.naturalWidth;
     onImageLoad();
+    onload?.();
   };
   img.src = url;
 }
@@ -257,33 +280,19 @@ export function loadImageFromUrl(url: string) {
 /*                                   Export                                   */
 /* -------------------------------------------------------------------------- */
 
-
-export function getBlob() {
-  return new Promise<Blob>((res, reg) => {
-    var canvas = document.createElement('canvas');
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
-    var context = canvas.getContext('2d');
-    context.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
-    canvas.toBlob((b) => {
-      res(b);
-    })
-  })
-}
-
-export function getDataUrl() {
+export function getDataUrl(scale: number = 1) {
   var canvas = document.createElement('canvas');
-  canvas.width = canvasWidth;
-  canvas.height = canvasHeight;
+  canvas.width = canvasWidth * scale;
+  canvas.height = canvasHeight * scale;
   var context = canvas.getContext('2d');
-  context.drawImage(img, netPanningX, netPanningY, imgWidth, imgHeight);
+  context.drawImage(img, netPanningX * scale, netPanningY * scale, imgWidth * scale, imgHeight * scale);
   return canvas.toDataURL();
 }
 
-export function download() {
+export function download(scale: number = 1) {
   const link = document.createElement('a');
   link.download = 'canvas.png';
-  link.href = getDataUrl();
+  link.href = getDataUrl(scale);
   link.click();
 }
 

@@ -8,7 +8,7 @@
   "author": "mohammad h alijany",
   "license": "ISC",
   "dependencies": {
-    "cropo": "file:C:\\Users\\mhali\\Desktop\\cropo\\cropo-0.5.2.tgz"
+    "cropo": "^0.5.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
