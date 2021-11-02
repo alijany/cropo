@@ -36,40 +36,32 @@ yarn add --save cropo
 using ES modules
 
 ```js
-import cr from 'cropo';
+import { Cropo } from 'cropo';
 ```
 
 using CommonJs
 
 ```js
-const cr = require('cropo');
+const { Cropo } = require('cropo');
 ```
 
 ### 2 - initialize Cropo with the following code
 
 ```js
-// load html canvas element
-cr.loadCanvas(document.getElementById('canvas'));
-// load image
-cr.loadImageFromUrl('https://loacl/landscape/3.jpg');
+const cropo = new Cropo({
+    imageUrl: image,
+    canvas: document.getElementById('canvas'),
+    rangeInput: document.getElementById('inputRange')
+})
 ```
 
 ### 3 - Optionals
 
 ```js
-// select an input to control zoom level
-cr.loadSlider(document.getElementById("myRange"))
-```
-
-input range most be between 1 and 5
-
-### 4 - Download or upload image
-
-```js
 // download canvas image
-cr.download();
+cropo.download();
 // get image as data url
-cr.getDataUrl();
+cropo.getDataUrl();
 ```
 
 ## Features <a name = "features"></a>
