@@ -2,6 +2,7 @@
 
 [![OSSAR](https://github.com/alijany/cropo/actions/workflows/ossar-analysis.yml/badge.svg?branch=main)](https://github.com/alijany/cropo/actions/workflows/ossar-analysis.yml)
 [![Node.js Package](https://github.com/alijany/cropo/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/alijany/cropo/actions/workflows/npm-publish.yml)
+[![Lint Code Base](https://github.com/alijany/cropo/actions/workflows/linter.yml/badge.svg)](https://github.com/alijany/cropo/actions/workflows/linter.yml)
 
 [Project Page](https://alijany.github.io/cropo/)
 
