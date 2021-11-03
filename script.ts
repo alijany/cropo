@@ -92,6 +92,7 @@ export class Cropo {
 
   // draw image
   private draw () {
+    if (!this.img) return
     this.canvasContext?.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
     this.canvasContext?.drawImage(this.img, this.netPanningX, this.netPanningY, this.imgWidth, this.imgHeight)
   }
@@ -204,6 +205,7 @@ export class Cropo {
   };
 
   private onPointerdown (e: PointerEvent) {
+    if (!this.img) return
     // This event is cached to support 2-finger gestures
     this.eventCache.push(e);
     // refresh move origin
@@ -212,6 +214,7 @@ export class Cropo {
   };
 
   private onPointerUp (e: PointerEvent) {
+    if (!this.isDown) return
     // If the number of pointers down is less than two then reset diff tracker
     this.eventCache = this.eventCache.filter(ev => ev.pointerId !== e.pointerId)
     if (this.eventCache.length < 2) {
@@ -238,6 +241,7 @@ export class Cropo {
   };
 
   private onResize = this.debounce<[]>(() => {
+    if (!this.img) return
     const deltaX = this.canvas.offsetWidth - this.canvasWidth
     const deltaY = this.canvas.offsetHeight - this.canvasHeight
     this.canvasWidth = this.canvas.width = this.canvas.offsetWidth
@@ -310,6 +314,7 @@ export class Cropo {
   /* -------------------------------------------------------------------------- */
 
   public getDataUrl (scale: number = 1) {
+    if (!this.img) throw Error('please set an image')
     const canvas = document.createElement('canvas')
     canvas.width = this.canvasWidth * scale
     canvas.height = this.canvasHeight * scale
