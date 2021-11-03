@@ -2,7 +2,7 @@ import image from './pine.webp'
 import { Cropo } from '../script'
 
 const cr = new Cropo({
-  // imageUrl: image,
+  imageUrl: image,
   canvas: document.getElementById('canvas') as HTMLCanvasElement,
   rangeInput: document.getElementById('myRange') as HTMLInputElement
 })
