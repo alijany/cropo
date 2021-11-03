@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: 14
       - run: npm i
-      - run: rm -rf ./dist/*
-      - run: npm run build
 
   publish-npm:
     needs: build
@@ -28,6 +26,8 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: npm publish
+      - run: rm -rf ./dist/*
+      - run: npm run build
+      - run: npm pack
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
