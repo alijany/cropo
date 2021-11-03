@@ -1,5 +1,8 @@
 # cropo
 
+[![OSSAR](https://github.com/alijany/cropo/actions/workflows/ossar-analysis.yml/badge.svg?branch=main)](https://github.com/alijany/cropo/actions/workflows/ossar-analysis.yml)
+[![Node.js Package](https://github.com/alijany/cropo/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/alijany/cropo/actions/workflows/npm-publish.yml)
+
 [Project Page](https://alijany.github.io/cropo/)
 
 [code Example on codepen](https://codepen.io/mh_alijnay/pen/MWvErzV)
