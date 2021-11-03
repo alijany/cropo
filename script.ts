@@ -313,14 +313,24 @@ export class Cropo {
   /*                                   Export                                   */
   /* -------------------------------------------------------------------------- */
 
-  public getDataUrl (scale: number = 1) {
+  private getCanvas (scale:number) {
     if (!this.img) throw Error('please set an image')
     const canvas = document.createElement('canvas')
     canvas.width = this.canvasWidth * scale
     canvas.height = this.canvasHeight * scale
     const context = canvas.getContext('2d')
     context.drawImage(this.img, this.netPanningX * scale, this.netPanningY * scale, this.imgWidth * scale, this.imgHeight * scale)
-    return canvas.toDataURL()
+    return canvas
+  }
+
+  public getBlob (scale: number = 1) {
+    return new Promise<Blob>(resolve => {
+      this.getCanvas(scale).toBlob((blob) => { resolve(blob) })
+    })
+  }
+
+  public getDataUrl (scale: number = 1) {
+    return this.getCanvas(scale).toDataURL()
   }
 
   public download (scale: number = 1) {
