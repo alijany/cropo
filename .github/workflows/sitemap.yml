@@ -1,0 +1,30 @@
+name: Generate xml sitemap
+
+on: workflow_dispatch
+
+jobs:
+  sitemap_job:
+    runs-on: ubuntu-latest
+    name: Generate a sitemap
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 
+
+    - name: generate-sitemap
+      # You may pin to the exact commit or the version.
+      # uses: cicirello/generate-sitemap@cf969bce72d620ade9964831a9e82b1404f7a342
+      uses: cicirello/generate-sitemap@v1.8.1
+      with:
+        # The path to the root of the website
+        path-to-root: docs # optional, default is .
+        # The url of your webpage
+        base-url-path: alijany.github.io/cropo/ # optional, default is https://web.address.of.your.nifty.website/
+
+    - name: Output stats
+      run: |
+        echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
+        echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
+        echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
