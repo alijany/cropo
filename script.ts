@@ -99,7 +99,11 @@ export class Cropo {
 
   // fix range
   private fixScale () {
-    if (this.fit) { this.scale = Math.min(this.imgWidth / this.canvasWidth, this.imgWidth / this.canvasHeight) || this.baseScale } else { this.scale = Math.min(this.imgWidth / this.originalWidth, this.imgWidth / this.originalHeight) || this.baseScale }
+    if (this.fit) {
+      this.scale = Math.min(this.imgWidth / this.canvasWidth, this.imgHeight / this.canvasHeight) || this.baseScale
+    } else {
+      this.scale = Math.min(this.imgWidth / this.originalWidth, this.imgHeight / this.originalHeight) || this.baseScale
+    }
     if (this.slider) this.slider.value = String(this.scale)
   }
 
@@ -156,7 +160,7 @@ export class Cropo {
     const newWidth = this.imgWidth + deltaX
     if (newWidth < this.originalWidth || this.imgHeight + deltaY < this.originalHeight) return
     if (newWidth / this.originalWidth > this.maxScale || newWidth / this.originalWidth < this.minScale) return
-    if (this.slider) this.slider.value = String(this.scale = newWidth / this.originalWidth)
+    if (this.slider) this.slider.value = String(this.scale = newWidth / this.originalWidth) // TODO: check
     // calc new size
     this.imgWidth = newWidth
     this.imgHeight += deltaY
@@ -342,7 +346,9 @@ export class Cropo {
 
   public getCropInfo () {
     return ({
-      width: this.imgWidth,
+      originalWidth: this.img.naturalWidth,
+      originalHeight: this.img.naturalHeight,
+      imgWidth: this.imgWidth,
       imgHeight: this.imgHeight,
       x: this.netPanningX,
       y: this.netPanningY
