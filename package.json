@@ -1,27 +1,32 @@
 {
   "name": "cropo",
-  "version": "0.5.8",
+  "version": "0.6.0",
   "scripts": {
-    "build": "microbundle"
+    "build": "tsup",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "author": "mohammad h alijany",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
-    "microbundle": "^0.14.1"
-  },
   "source": "./script.ts",
-  "main": "./dist/foo.umd.js",
-  "module": "./dist/foo.module.js",
-  "exports": "./dist/foo.modern.js",
+  "type": "module",
+  "main": "./dist/script.cjs",
+  "module": "./dist/script.js",
   "types": "./dist/script.d.ts",
+  "unpkg": "./dist/script.global.js",
+  "jsdelivr": "./dist/script.global.js",
+  "exports": {
+    ".": {
+      "types": "./dist/script.d.ts",
+      "import": "./dist/script.js",
+      "require": "./dist/script.cjs"
+    }
+  },
   "files": [
     "dist/"
   ],
@@ -49,5 +54,14 @@
   "bugs": {
     "url": "https://github.com/alijany/cropo/issues"
   },
-  "homepage": "https://github.com/alijany/cropo#readme"
+  "homepage": "https://github.com/alijany/cropo#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.5.0",
+    "jsdom": "^29.1.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.61.1",
+    "vitest": "^4.1.9"
+  }
 }
