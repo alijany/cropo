@@ -3,38 +3,38 @@ export class Cropo {
   private slider: HTMLInputElement | undefined;
 
   // canvas related variables
-  private canvas: HTMLCanvasElement;
-  private canvasContext: CanvasRenderingContext2D;
+  private canvas!: HTMLCanvasElement;
+  private canvasContext!: CanvasRenderingContext2D;
   private canvasWidth: number = 0;
   private canvasHeight: number = 0;
 
   // image related variables
   private fit: boolean = true;
-  private img: HTMLImageElement;
-  private imgHeight: number;
-  private imgWidth: number;
-  private scale: number;
+  private img!: HTMLImageElement;
+  private imgHeight!: number;
+  private imgWidth!: number;
+  private scale!: number;
   private baseScale: number = 1;
   private maxScale: number = 5;
   private minScale: number = 1;
-  private originalWidth: number;
-  private originalHeight: number;
-  private ratio: number;
+  private originalWidth!: number;
+  private originalHeight!: number;
+  private ratio!: number;
 
   // Pointer drag related variables
-  private isDown: boolean;
-  private pointerX: number
-  private pointerY: number;
+  private isDown!: boolean;
+  private pointerX!: number
+  private pointerY!: number;
 
   // the accumulated horizontal(X) & vertical(Y) panning the user has done in total
-  private netPanningX: number;
-  private netPanningY: number;
+  private netPanningX!: number;
+  private netPanningY!: number;
 
   // zoom and pinch related variables
-  private originX: number
-  private originY: number;
-  private eventCache: PointerEvent[];
-  private prevDiff: number;
+  private originX!: number
+  private originY!: number;
+  private eventCache!: PointerEvent[];
+  private prevDiff!: number;
 
   // TODO: remove optional from version 1.0.0
   constructor (options: {
@@ -55,7 +55,7 @@ export class Cropo {
     this.maxScale = options?.maxScale || this.maxScale
     this.minScale = options?.minScale || this.minScale
     this.loadCanvas(options?.canvas || document.createElement('canvas'), options?.width, options?.height)
-    options?.rangeInput && this.loadSlider(options.rangeInput)
+    if (options?.rangeInput) this.loadSlider(options.rangeInput)
     if (options?.imageUrl) {
       this.loadImageFromUrl(options?.imageUrl, options?.fit, () => {
         this.move(options?.x || 0, options?.y || 0)
@@ -71,7 +71,7 @@ export class Cropo {
 
   // define debounce function
   private debounce<Params extends any[]> (func: (...args: Params) => any, timeout: number): (...args: Params) => void {
-    let timer
+    let timer: ReturnType<typeof setTimeout>
     return (...args: Params) => {
       clearTimeout(timer)
       timer = setTimeout(() => {
@@ -293,7 +293,9 @@ export class Cropo {
 
   public loadCanvas (el: HTMLCanvasElement, width?: number, height?: number) {
     this.canvas = el
-    this.canvasContext = this.canvas.getContext('2d')
+    const context = this.canvas.getContext('2d')
+    if (!context) throw Error('could not get a 2d canvas context')
+    this.canvasContext = context
     this.canvasWidth = this.canvas.width = width || this.canvas.offsetWidth
     this.canvasHeight = this.canvas.height = height || this.canvas.offsetHeight
     this.leadListeners()
@@ -323,13 +325,17 @@ export class Cropo {
     canvas.width = this.canvasWidth * scale
     canvas.height = this.canvasHeight * scale
     const context = canvas.getContext('2d')
+    if (!context) throw Error('could not get a 2d canvas context')
     context.drawImage(this.img, this.netPanningX * scale, this.netPanningY * scale, this.imgWidth * scale, this.imgHeight * scale)
     return canvas
   }
 
   public getBlob (scale: number = 1) {
-    return new Promise<Blob>(resolve => {
-      this.getCanvas(scale).toBlob((blob) => { resolve(blob) })
+    return new Promise<Blob>((resolve, reject) => {
+      this.getCanvas(scale).toBlob((blob) => {
+        if (blob) resolve(blob)
+        else reject(Error('could not create blob from canvas'))
+      })
     })
   }
 
